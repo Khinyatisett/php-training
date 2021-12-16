@@ -1,15 +1,14 @@
 <?php 
     session_start(); 
-    if ( isset($_POST['Submit'] ) ) 
+    if ( isset($_POST['submit'] ) ) 
     {
         $logins = array('Mg Mg' => '123','Su Su' => '456','Mya Mya' => '789');
-            $Username = isset($_POST['Username']) ? $_POST['Username'] : '';
-            $Password = isset($_POST['Password']) ? $_POST['Password'] : '';
+            $username = isset($_POST['username']) ? $_POST['username'] : '';
+            $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-
-    if (isset($logins[$Username]) && $logins[$Username] == $Password) 
+    if (isset($logins[$username]) && $logins[$username] == $password) 
         {
-            $_SESSION['UserData']['Username']=$logins[$Username];
+            $_SESSION['userData']['username']=$logins[$username];
             header("location:index.php");
             exit;
         } 
@@ -22,15 +21,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
 <form action="" method="post" name="Login_Form">
 	Enter your name <br>
-	<input name="Username" type="text" class="Input"> <br> <br>
+	<input name="username" type="text" class="Input"> <br> <br>
 	Enter your password <br> 
-	<input name="Password" type="password" class="Input"><br> <br>
-	<input name="Submit" type="submit" value="Login" class="Button3">
+	<input name="password" type="password" class="Input"><br> <br>
+	<input name="submit" type="submit" value="Login" class="Button3">
 </form>
 </body>
 </html>
