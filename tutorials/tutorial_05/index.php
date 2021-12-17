@@ -10,8 +10,8 @@
 <body>
 
 <?php
-	$csv_fp = fopen("sample.csv", "r");
-	if ($csv_fp !== FALSE) {
+    $csv_fp = fopen("sample.csv", "r");
+	  if ($csv_fp !== FALSE) {
 ?>
   <h3>(1) content of csv file</h3>
   <table id="table">
@@ -20,33 +20,37 @@
     <td>GENDER</td>
   </tr>
 <?php	
-	while (! feof($csv_fp)) {
-	$data = fgetcsv($csv_fp, 1000, ",");
+	  while (! feof($csv_fp)) {
+	  $data = fgetcsv($csv_fp, 1000, ",");
 ?>
   <tr class="data">
   <td><?php echo $data[0]; ?></td>
   <td><?php echo $data[1]; ?></td>
   </tr>
 <?php
-	}
+  	}
 ?>
   </table> </br>
 <?php	
-	}
-	fclose($csv_fp);
-?>
+  	}
+	  fclose($csv_fp);
+?> 
+</body>
+</html>
 
+<h3>(2) Content for txt file</h3>
 <?php
-
 $file = fopen("sample.txt","r");
-
-while(! feof($file))
-  {
-  echo fgets($file). "<br />";
-  }
+    while (! feof($file)) {
+      echo fgets($file). "<br />";
+    }
 
 fclose($file);
 ?>
 
-</body>
-</html>
+<h3>(3) Content for doc file </h3>
+<?php
+$filename = 'sample.doc';
+readfile($filename);
+exit;
+?>
