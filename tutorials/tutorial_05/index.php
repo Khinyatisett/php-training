@@ -42,15 +42,28 @@
 <h3>(2) Content for txt file</h3>
 <?php
 $fh = fopen('sample.txt','r');
-while ($line = fgets($fh)) {
- echo($line);
+    while ($line = fgets($fh)) {
+    echo($line);
 }
 fclose($fh);
 ?>
 
 <h3>(3) Content for doc file</h3>
 <?php
-readfile('sample.doc');
+    readfile('sample.doc');
 ?>
 
+<h3>(4) Content for xlsx file</h3>
+<?php
+require 'vendor/autoload.php';
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+$spreadsheet = $reader->load("sample.xlsx");
+$sheetArray = $spreadsheet->getActiveSheet()->toArray();
+foreach($sheetArray as $sheet){
+  foreach($sheet as $data) {
+    echo $data5t6y;
+  }
+}
+?>
 
