@@ -30,10 +30,23 @@
 <?php
 	}
 ?>
-  </table>
+  </table> </br>
 <?php	
 	}
 	fclose($csv_fp);
 ?>
+
+<?php
+
+$file = fopen("sample.txt","r");
+
+while(! feof($file))
+  {
+  echo fgets($file). "<br />";
+  }
+
+fclose($file);
+?>
+
 </body>
 </html>
