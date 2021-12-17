@@ -52,5 +52,6 @@ fclose($file);
 <?php
 $filename = 'sample.doc';
 readfile($filename);
-exit;
 ?>
+
+  </br>
