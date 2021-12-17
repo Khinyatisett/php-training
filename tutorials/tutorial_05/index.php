@@ -1,7 +1,4 @@
-<?php
-use Aspera\Spreadsheet\XLSX\Reader;
-require 'vendor/autoload.php';
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,32 +40,15 @@ require 'vendor/autoload.php';
 </html>
 
 <h3>(2) Content for txt file</h3>
-<?php
-$file = fopen("sample.txt","r");
-    while (! feof($file)) {
-      echo fgets($file). "<br />";
-    }
 
-fclose($file);
+<php?
+<?php
+require_once 'vendor/autoload.php';
+require_once 'config.php';
+  
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Csv;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+
 ?>
 
-<h3>(3) Content for doc file </h3>
-<?php
-$filename = 'sample.doc';
-readfile($filename);
-?>
-</br> </br>
-
-
-<h3> (4) Content for xlsx file</h3>
-<?php
-
-$reader = new Reader();
-$reader->open('sample.xlsx');
-
-foreach ($reader as $row) {
-    print_r($row);
-}
-
-$reader->close();
-?>
