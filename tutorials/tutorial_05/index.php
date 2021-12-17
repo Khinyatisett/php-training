@@ -40,15 +40,17 @@
 </html>
 
 <h3>(2) Content for txt file</h3>
-
-<php?
 <?php
-require_once 'vendor/autoload.php';
-require_once 'config.php';
-  
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Reader\Csv;
-use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
-
+$fh = fopen('sample.txt','r');
+while ($line = fgets($fh)) {
+ echo($line);
+}
+fclose($fh);
 ?>
+
+<h3>(3) Content for doc file</h3>
+<?php
+readfile('sample.doc');
+?>
+
 
