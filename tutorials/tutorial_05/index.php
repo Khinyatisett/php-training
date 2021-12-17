@@ -1,3 +1,7 @@
+<?php
+use Aspera\Spreadsheet\XLSX\Reader;
+require 'vendor/autoload.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,5 +57,18 @@ fclose($file);
 $filename = 'sample.doc';
 readfile($filename);
 ?>
+</br> </br>
 
-  </br>
+
+<h3> (4) Content for xlsx file</h3>
+<?php
+
+$reader = new Reader();
+$reader->open('sample.xlsx');
+
+foreach ($reader as $row) {
+    print_r($row);
+}
+
+$reader->close();
+?>
