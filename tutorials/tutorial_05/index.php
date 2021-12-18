@@ -9,12 +9,12 @@
   <title>tutorial_05</title>
 </head>
 <body>
-
+    
+<h3>(1) content of csv file</h3>
 <?php
     $csv_fp = fopen("sample.csv", "r");
 	  if ($csv_fp !== FALSE) {
 ?>
-  <h3>(1) content of csv file</h3>
   <table id="table">
   <tr>
     <td>NAME</td>
@@ -51,7 +51,7 @@ fclose($fh);
 <h3>(3) Content for doc file</h3>
 <?php
     readfile('sample.doc');
-?>
+?> 
 
 <h3>(4) Content for xlsx file</h3>
 <?php
@@ -60,10 +60,10 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 $spreadsheet = $reader->load("sample.xlsx");
 $sheetArray = $spreadsheet->getActiveSheet()->toArray();
-foreach($sheetArray as $sheet){
-  foreach($sheet as $data) {
-    echo $data5t6y;
-  }
+    foreach ( $sheetArray as $sheet){
+        foreach ($sheet as $data) {
+        echo $data;
+    }
 }
 ?>
 
