@@ -36,8 +36,7 @@
   	}
 	  fclose($csv_fp);
 ?> 
-</body>
-</html>
+
 
 <h3>(2) Content for txt file</h3>
 <?php
@@ -55,15 +54,46 @@ fclose($fh);
 
 <h3>(4) Content for xlsx file</h3>
 <?php
-require 'vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+require 'vendor/autoload.php';
+
+    $flsx_fp = fopen("sample.xlsx", "r");
+	  if ($flsx_fp !== FALSE) {
+?>
+  <table id="table">
+  <tr>
+    <td>NAME</td>
+    <td>GENDER</td>
+  </tr>
+<?php	
+	  while (! feof($flsx_fp)) {
+	  $data = fgetcsv($flsx_fp, 1000, ",");
+?>
+  <tr class="data">
+  <td><?php echo $data[0]; ?></td>
+  <td><?php echo $data[1]; ?></td>
+  </tr>
+<?php
+  	}
+?>
+  </table> </br>
+<?php	
+  	}
+	  fclose($flsx_fp);
+
+
+
+
+/*$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 $spreadsheet = $reader->load("sample.xlsx");
 $sheetArray = $spreadsheet->getActiveSheet()->toArray();
     foreach ( $sheetArray as $sheet){
         foreach ($sheet as $data) {
         echo $data;
     }
-}
+}*/
 ?>
+
+</body>
+</html>
 
