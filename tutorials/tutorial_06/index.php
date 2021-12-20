@@ -3,31 +3,45 @@
 <head>
   <link rel="stylesheet" href="../tutorial_06/style.css">
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tutorial_6</title>
+  <title>Tutorial 6</title>
 </head>
 <body>
-<form action="index.php" method="post" enctype="multipart/form-data" id="form">
-  Enter Folder Name <br>
-  <input name="createfolder" type="text"> <br> <br>
-  Choose Image <br> <br>
-  <input type="file" name="image" accept="image/png, image/gif, image/jpeg"/>  <br> <br>
-  <input type="submit" value="Upload Image" name="upload"/>
-</form>
+  <div class="block">
+  <form action="index.php" method="post" enctype="multipart/form-data">
+      Upload a File:
+      <input type="file" name="upload_image" id="image" accept="image/png, image/gif, image/jpeg" ><br><br>
+      <input name="createfolder" type="text" id="folder_name"> <br> <br>
+      <input type="submit" name="submit" value="Start Upload" id="submit"><br><br>
+  </form>
+  </div>
 </body>
 </html>
 
 <?php
 
-if (isset($_POST['upload'])){
-    $folder_name=$_POST['createfolder'];
-    @mkdir($output_dir . $folder_name);
+$folder_name=$_POST['createfolder'];
+@mkdir($output_dir . $folder_name);
+$errors = [];
+$fileName = $_FILES['upload_image']['name'];
+$fileSize = $_FILES['upload_image']['size'];
+$fileTmpName  = $_FILES['upload_image']['tmp_name'];
+$fileType = $_FILES['upload_image']['type'];
+$uploadPath = "$folder_name/". basename($fileName); 
 
-    $tmp=$_FILES ['image']['tmp_name'];
-    $img_name=$_FILES['image']['name'];
-    $target_file="$folder_name/". $img_name;
-    move_uploaded_file($tmp,$target_file);    
+if (isset($_POST['submit'])) {
+    if ($fileSize > 4000000) {
+        $errors[] = "File exceeds maximum size (4MB)";
+    }
+    if (empty($errors)) {
+        $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
+        if ($didUpload) {
+            echo "The file " . basename($fileName) . " has been uploaded";
+        }
+    } else {
+        foreach ($errors as $error) {
+            echo $error . "These are the errors" . "\n";
+        }
+    }
 }
 
 ?>

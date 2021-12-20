@@ -1,3 +1,29 @@
-body {
-    background-color: darkcyan;
+body {  
+  margin: 0;  
+  padding: 0;  
+  background-color:#6abadeba;  
+  font-size: 20px;   
+} 
+
+.block {  
+  width: 382px;  
+  overflow: hidden;  
+  margin: 20px 0 0 450px;  
+  padding: 80px;  
+  background: #23463f;  
+  border-radius: 15px ;   
+  color: #08ffd1;
+}  
+
+#image {
+  color: #08ffd1;
 }
+
+#submit {  
+  width: 100px;  
+  height: 30px;  
+  border: none;  
+  border-radius: 17px;  
+  padding-left: 7px;  
+  color: blue;   
+}  
