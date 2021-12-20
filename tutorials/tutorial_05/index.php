@@ -53,7 +53,7 @@ fclose($fh);
 ?> 
 
 <h3>(4) Content for xlsx file</h3>
-<table><?php
+<table id="table"><?php
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 require 'vendor/autoload.php';
 $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
