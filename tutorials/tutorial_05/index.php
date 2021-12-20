@@ -53,18 +53,23 @@ fclose($fh);
 ?> 
 
 <h3>(4) Content for xlsx file</h3>
-<?php
+<table><?php
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 require 'vendor/autoload.php';
 $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 $spreadsheet = $reader->load("sample.xlsx");
-$sheetArray = $spreadsheet->getActiveSheet()->toArray();
-    foreach ( $sheetArray as $sheet){
-        foreach ($sheet as $data) {
-        echo $data;
-    }
+$worksheet = $spreadsheet->getActiveSheet();
+foreach ($worksheet->getRowIterator() as $row) {
+    $cellIterator = $row->getCellIterator();
+    $cellIterator->setIterateOnlyExistingCells(false);
+    echo "<tr>";
+foreach ($cellIterator as $cell) { 
+    echo "<td>". $cell->getValue() ."</td>"; 
 }
-?>
+  echo "</tr>";
+}
+?></table>
+
 </body>
 </html>
 
