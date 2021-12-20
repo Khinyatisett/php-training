@@ -69,7 +69,6 @@ foreach ($cellIterator as $cell) {
   echo "</tr>";
 }
 ?></table>
-
 </body>
 </html>
 
