@@ -18,17 +18,17 @@
 </html>
 
 <?php
-
-$folder_name=$_POST['createfolder'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$folder_name=$_POST["createfolder"];
 @mkdir($output_dir . $folder_name);
 $errors = [];
-$fileName = $_FILES['upload_image']['name'];
-$fileSize = $_FILES['upload_image']['size'];
-$fileTmpName  = $_FILES['upload_image']['tmp_name'];
-$fileType = $_FILES['upload_image']['type'];
+$fileName = $_FILES["upload_image"]["name"];
+$fileSize = $_FILES["upload_image"]["size"];
+$fileTmpName  = $_FILES["upload_image"]["tmp_name"];
+$fileType = $_FILES["upload_image"]["type"];
 $uploadPath = "$folder_name/". basename($fileName); 
-
-if (isset($_POST['submit'])) {
+}
+if (isset($_POST["submit"])) {
     if ($fileSize > 4000000) {
         $errors[] = "File exceeds maximum size (4MB)";
     }
