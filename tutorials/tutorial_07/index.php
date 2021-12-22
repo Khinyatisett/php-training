@@ -1,7 +1,7 @@
 <?php
 include('phpqrcode/qrlib.php');
 function getUsernameFromEmail($email) {
-	  $find = '@';
+    $find = '@';
 	  $pos = strpos($email, $find);
 	  $username = substr($email, 0, $pos);
 	  return $username;
@@ -35,8 +35,8 @@ if (isset($_POST['submit']) ) {
 
 <?php
 	  if(!isset($filename)){
-		$filename = "author";
-	}
+		    $filename = "author";
+	    }
 ?>
 <h3>QR Code Result: </h3>
 <?php 
