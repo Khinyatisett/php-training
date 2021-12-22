@@ -1,18 +1,18 @@
 <?php
 include('phpqrcode/qrlib.php');
 function getUsernameFromEmail($email) {
-	$find = '@';
-	$pos = strpos($email, $find);
-	$username = substr($email, 0, $pos);
-	return $username;
+	  $find = '@';
+	  $pos = strpos($email, $find);
+	  $username = substr($email, 0, $pos);
+	  return $username;
 }
 
 if (isset($_POST['submit']) ) {
-	$tempDir = 'temp/'; 
-	$email = $_POST['mail'];
-	$filename = getUsernameFromEmail($email);
-	$codeContents = 'mailto:'.$email.'?subject='.urlencode($subject).'&body='.urlencode($body); 
-	QRcode::png($codeContents, $tempDir.''.$filename.'.png', QR_ECLEVEL_L, 5);
+	  $tempDir = 'temp/'; 
+	  $email = $_POST['mail'];
+	  $filename = getUsernameFromEmail($email);
+	  $codeContents = 'mailto:'.$email.'?subject='.urlencode($subject).'&body='.urlencode($body); 
+	  QRcode::png($codeContents, $tempDir.''.$filename.'.png', QR_ECLEVEL_L, 5);
 }
 ?>
 
@@ -34,7 +34,7 @@ if (isset($_POST['submit']) ) {
 </form>
 
 <?php
-	if(!isset($filename)){
+	  if(!isset($filename)){
 		$filename = "author";
 	}
 ?>
