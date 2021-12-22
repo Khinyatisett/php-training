@@ -8,11 +8,11 @@ function getUsernameFromEmail($email) {
 }
 
 if (isset($_POST['submit']) ) {
-	  $tempDir = 'temp/'; 
-	  $email = $_POST['mail'];
-	  $filename = getUsernameFromEmail($email);
-	  $codeContents = 'mailto:'.$email.'?subject='.urlencode($subject).'&body='.urlencode($body); 
-	  QRcode::png($codeContents, $tempDir.''.$filename.'.png', QR_ECLEVEL_L, 5);
+    $tempDir = 'temp/'; 
+    $email = $_POST['mail'];
+    $filename = getUsernameFromEmail($email);
+    $codeContents = 'mailto:'.$email.'?subject='.urlencode($subject).'&body='.urlencode($body); 
+    QRcode::png($codeContents, $tempDir.''.$filename.'.png', QR_ECLEVEL_L, 5);
 }
 ?>
 
