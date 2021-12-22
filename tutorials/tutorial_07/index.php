@@ -34,9 +34,9 @@ if (isset($_POST['submit']) ) {
 </form>
 
 <?php
-	  if(!isset($filename)){
-		    $filename = "author";
-	    }
+if (!isset($filename)) {
+    $filename = "author";
+}
 ?>
 <h3>QR Code Result: </h3>
 <?php 
