@@ -19,18 +19,18 @@ if (isset($_POST['submit']) ) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="../tutorial_07/style.css">
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generating QR code</title>
+    <link rel="stylesheet" href="../tutorial_07/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generating QR code</title>
 </head>
 <body>
 <div>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" >
 <label>Email</label>
-  <input type="email" class="form-control" name="mail" style="width:20em;" placeholder="Enter your Email" value="<?php echo @$email; ?>" required /> <br> <br>
-  <input type="submit" name="submit" class="submitBtn" value="Generate QR code" />
+    <input type="email" class="form-control" name="mail" style="width:20em;" placeholder="Enter your Email" value="<?php echo @$email; ?>" required /> <br> <br>
+    <input type="submit" name="submit" class="submitBtn" value="Generate QR code" />
 </form>
 
 <?php
