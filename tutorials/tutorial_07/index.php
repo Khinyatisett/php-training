@@ -2,9 +2,9 @@
 include('phpqrcode/qrlib.php');
 function getUsernameFromEmail($email) {
     $find = '@';
-	  $pos = strpos($email, $find);
-	  $username = substr($email, 0, $pos);
-	  return $username;
+$pos = strpos($email, $find);
+$username = substr($email, 0, $pos);
+return $username;
 }
 
 if (isset($_POST['submit']) ) {
