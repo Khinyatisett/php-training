@@ -11,19 +11,17 @@
 </head>
 <body>
 <div class="wrapper">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="mt-5 mb-3 clearfix">
-          <h2 class="pull-left">Students Information</h2>
-              <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Students</a>
-        </div>
-      </div>
-    </div>        
-  </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mt-5 mb-3 clearfix">
+                <h2 class="pull-left">Students Information</h2>
+                <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Students</a>
+                </div>
+            </div>
+        </div>        
+    </div>
 </div>
-</body>
-</html>
 </body>
 </html>
 
@@ -61,8 +59,7 @@ if ($result = $mysqli->query($sql)) {
                 echo "</tr>";
                 }
         echo "</tbody>";                            
-        echo "</table>";
-                            
+        echo "</table>";                    
     $result->free(); } else {
         echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
       }  } else {
