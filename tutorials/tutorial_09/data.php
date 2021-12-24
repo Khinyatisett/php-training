@@ -8,7 +8,7 @@ if (!$con) {
          $chart_data="";
          while ($row = mysqli_fetch_array($result)) { 
             $name[]  = $row['name']  ;
-            $age[] = $row['age'];
+            $marks[] = $row['marks'];
         }
 }
 
@@ -21,8 +21,8 @@ if (!$con) {
         <title>Graph</title> 
     </head>
     <body>
-        <div style="width:40%;height:50%;text-align:center">
-            <h3>Student Age</h3>
+        <div style="width:50%;height:50%;text-align:center">
+            <h3>Student Marks</h3>
             <canvas  id="chartjs_bar"></canvas> 
         </div>    
     </body>
@@ -44,7 +44,7 @@ if (!$con) {
                                 "#7040fa",
                                 "#ff004e"
                             ],
-                            data:<?php echo json_encode($age); ?>,
+                            data:<?php echo json_encode($marks); ?>,
                         }]
                     },
                     options: {

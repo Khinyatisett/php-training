@@ -14,6 +14,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                 $major = $row["major"];
                 $address = $row["address"];
                 $age = $row["age"];
+                $marks = $row["marks"];
             } else {
                 header("location: error.php");
                 exit();
@@ -64,6 +65,10 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                     <div class="form-group">
                         <label>Age</label>
                         <p><b><?php echo $row["age"]; ?></b></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Total Marks</label>
+                        <p><b><?php echo $row["marks"]; ?></b></p>
                     </div>
                     <p><a href="index.php" class="btn btn-primary">Back</a></p>
                 </div>

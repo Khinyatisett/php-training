@@ -40,6 +40,7 @@ if ($result = $mysqli->query($sql)) {
         echo "<th>Major</th>";
         echo "<th>Address</th>";
         echo "<th>Age</th>";
+        echo "<th>Total Marks</th>";
         echo "<th>Action</th>";
         echo "</tr>";
         echo "</thead>";
@@ -52,6 +53,7 @@ if ($result = $mysqli->query($sql)) {
                     echo "<td>" . $row['major'] . "</td>";
                     echo "<td>" . $row['address'] . "</td>";
                     echo "<td>" . $row['age'] . "</td>";
+                    echo "<td>" . $row['marks'] . "</td>";
                     echo "<td>";
                     echo '<a href="read.php?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                     echo '<a href="update.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';

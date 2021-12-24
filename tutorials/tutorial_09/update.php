@@ -1,7 +1,7 @@
 <?php
 require_once "config.php";
-$fathername = $name = $major = $address = $age = "";
-$fathername_err = $name_err = $major_err = $address_err = $age_err = "";
+$fathername = $name = $major = $address = $age = $marks = "";
+$fathername_err = $name_err = $major_err = $address_err = $age_err = $marks_err= "";
 
 if (isset($_POST["id"]) && !empty($_POST["id"])) {
 $id = $_POST["id"];
@@ -45,16 +45,26 @@ $input_age = trim($_POST["age"]);
     } else{
         $age = $input_age;
     }
+
+$input_marks = trim($_POST["marks"]);
+    if (empty($input_age)){
+        $marks_err = "Please enter total marks.";     
+    } elseif(!ctype_digit($input_marks)){
+        $marks_err = "Please enter a positive integer value.";
+    } else{
+        $marks = $input_marks;
+    }    
     
-    if (empty($fathername_err) && empty($name_err) && empty($major_err) && empty($address_err) && empty($age_err)) {
-        $sql = "UPDATE students SET fathername=?, name=?, major=?, address=?, age=? WHERE id=?";
+    if (empty($fathername_err) && empty($name_err) && empty($major_err) && empty($address_err) && empty($age_err) && empty($marks_err)) {
+        $sql = "UPDATE students SET fathername=?, name=?, major=?, address=?, age=? , marks=? WHERE id=?";
         if ($stmt = $mysqli->prepare($sql)) {
-            $stmt->bind_param("ssssss",$param_fathername, $param_name,$param_major, $param_address, $param_age , $param_id);
+            $stmt->bind_param("sssssss",$param_fathername, $param_name,$param_major, $param_address, $param_age, $param_marks , $param_id);
             $param_fathername = $fathername;
             $param_name = $name;
             $param_major = $major;
             $param_address = $address;
             $param_age = $age;
+            $param_marks = $marks;
             $param_id = $id;
         if ($stmt->execute()){
             header("location: index.php");
@@ -82,6 +92,7 @@ $input_age = trim($_POST["age"]);
                     $major = $row ["major"];
                     $address = $row["address"];
                     $age = $row["age"];
+                    $marks = $row["marks"];
                 } else {
                     header ("location: error.php");
                     exit();
@@ -141,6 +152,11 @@ $input_age = trim($_POST["age"]);
                         <label>Age</label>
                         <input type="text" name="age" class="form-control <?php echo (!empty($age_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $age; ?>">
                         <span class="invalid-feedback"><?php echo $age_err;?></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Total Marks</label>
+                        <input type="text" name="marks" class="form-control <?php echo (!empty($marks_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $marks; ?>">
+                        <span class="invalid-feedback"><?php echo $marks_err;?></span>
                     </div>
                 <input type="hidden" name="id" value="<?php echo $id; ?>"/>
                 <input type="submit" class="btn btn-primary" value="Submit">

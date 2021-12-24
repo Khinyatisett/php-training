@@ -1,7 +1,7 @@
 <?php
 require_once "config.php";
-$id = $fathername = $name = $major = $address = $age = "";
-$is = $fathername_err = $name_err = $major_err = $address_err = $age_err = "";
+$id = $fathername = $name = $major = $address = $age = $marks = "";
+$is = $fathername_err = $name_err = $major_err = $address_err = $age_err = $marks_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -45,16 +45,26 @@ if(empty($input_age)){
 } else{
     $age = $input_age;
 }
+
+$input_marks = trim($_POST["marks"]);
+if(empty($input_marks)){
+    $marks_err = "Please enter total marks.";     
+} elseif(!ctype_digit($input_marks)){
+    $marks_err = "Please enter a positive integer value.";
+} else{
+    $marks = $input_marks;
+}
     
-if (empty($fathername_err) && empty($name_err) && empty($major_err) && empty($address_err) && empty($age_err)) {
-    $sql = "INSERT INTO students (fathername,name,major, address, age) VALUES (?, ?, ? , ? , ?)";
+if (empty($fathername_err) && empty($name_err) && empty($major_err) && empty($address_err) && empty($age_err) && empty($marks_err)) {
+    $sql = "INSERT INTO students (fathername,name,major,address, age , marks) VALUES (?, ?, ? , ? , ? , ?)";
         if($stmt = $mysqli->prepare($sql)) {
-            $stmt->bind_param("sssss",$param_fathername, $param_name,$param_major, $param_address, $param_age);
+            $stmt->bind_param("ssssss",$param_fathername, $param_name,$param_major, $param_address, $param_age,$param_marks);
             $param_fathername = $fathername;
             $param_name = $name;
             $param_major = $major;
             $param_address = $address;
             $param_age = $age;
+            $param_marks = $marks;
             if ($stmt->execute()){
                 header("location: index.php");
                 exit();
@@ -107,6 +117,11 @@ if (empty($fathername_err) && empty($name_err) && empty($major_err) && empty($ad
                     <label>Age</label>
                     <input type="text" name="age" class="form-control <?php echo (!empty($age_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $age; ?>">
                     <span class="invalid-feedback"><?php echo $age_err;?></span>
+                </div>
+                <div class="form-group">
+                    <label>Total Marks</label>
+                    <input type="text" name="marks" class="form-control <?php echo (!empty($marks_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $marks; ?>">
+                    <span class="invalid-feedback"><?php echo $marks_err;?></span>
                 </div>
                 <a href="read.php"><input type="submit" class="btn btn-primary" value="Submit"></a>
                 <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
