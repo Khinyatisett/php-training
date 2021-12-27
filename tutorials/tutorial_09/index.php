@@ -22,7 +22,7 @@
         </div>        
     </div>
 </div>
-<div style="text-align: center"> <a href="data.php"> <input type="button" value="View Age Chart"> </a></div>
+<div style="text-align: center"> <a href="data.php"> <input type="button" value="View Mark Chart"> </a></div>
 </body>
 </html>
 
