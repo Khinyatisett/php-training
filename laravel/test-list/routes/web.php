@@ -15,17 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Validator;
 use App\Models\Task;
-
 use Illuminate\Http\Request;
 
 /**
  * Display All Tasks
  */
 Route::get('/', 'App\Http\Controllers\Task\TaskController@displayTasks' );
-    
- //
-  
-
 
 /**
  * Add A New Task

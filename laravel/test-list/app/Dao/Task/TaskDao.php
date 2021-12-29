@@ -27,19 +27,7 @@ class TaskDao implements TaskDaoInterface
     * Add A New Task
     */
   public function addTasks(Request $request){
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|max:255',
-    ]);
-    if ($validator->fails()) {
-        return redirect('/')
-            ->withInput()
-            ->withErrors($validator);
-    }
-    $task = new Task;
-    $task->name = $request->name;
-    $task->save();
-
-    return redirect('/');
+    //
   }
 
   /**

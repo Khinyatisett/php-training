@@ -14,26 +14,41 @@ class TaskController extends Controller
     {
       $this->taskInterface = $taskServiceInterface;
     }
-    /**
-    * Display All Tasks
-    */
+
+      /**
+   * To show create task view
+   * 
+   * @return View create tasks
+   */
     public function displayTasks(){
-      
         $tasks = $this->taskInterface->displayTasks();
         return view('tasks', compact('tasks')); 
     }
 
-    /**
-    * Add A New Task
-    */
+      /**
+   * To submit task create tasks 
+   * @param Request $request
+   * @return View tasks
+   */
     public function addTasks(Request $request){
-
-        $tasks = $this->taskInterface->addTasks($request);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/')
+                ->withInput()
+                ->withErrors($validator);
+        }
+        $task = new Task;
+        $task->name = $request->name;
+        $task->save();
         return redirect('/');
     }
-    /**
-    * Delete A New Task
-    */
+
+     /**
+   * To delete post by id
+   * @return View task
+   */
     public function deleteTasks($id){
         $tasks = $this->taskInterface->deleteTasks($id);
         return redirect('/');
