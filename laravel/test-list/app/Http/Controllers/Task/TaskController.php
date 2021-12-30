@@ -39,9 +39,7 @@ class TaskController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
-        $task = new Task;
-        $task->name = $request->name;
-        $task->save();
+        $tasks = $this->taskInterface->addTasks($request);
         return redirect('/');
     }
 
@@ -53,6 +51,4 @@ class TaskController extends Controller
         $tasks = $this->taskInterface->deleteTasks($id);
         return redirect('/');
     }
-
-
 }

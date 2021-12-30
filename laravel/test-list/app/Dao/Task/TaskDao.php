@@ -27,7 +27,9 @@ class TaskDao implements TaskDaoInterface
     * Add A New Task
     */
   public function addTasks(Request $request){
-    //
+    $tasks = new Task;
+    $tasks->name = $request->name;
+    $tasks->save();
   }
 
   /**
