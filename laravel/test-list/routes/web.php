@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
+  
+use App\Http\Controllers\Auth\AuthController;
 /**
  * Display All Tasks
  */
-Route::get('/', 'App\Http\Controllers\Task\TaskController@displayTasks' );
+Route::get('/tasks', 'App\Http\Controllers\Task\TaskController@displayTasks' );
 
 /**
  * Add A New Task
@@ -31,3 +33,11 @@ Route::post('/task', 'App\Http\Controllers\Task\TaskController@addTasks');
  * Delete An Existing Task
  */
 Route::delete('/task/{id}', 'App\Http\Controllers\Task\TaskController@deleteTasks');
+
+/**for login */
+Route::get('/', [AuthController::class, 'index'])->name('login');
+Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
+Route::get('registration', [AuthController::class, 'registration'])->name('register');
+Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
+Route::get('dashboard', [AuthController::class, 'dashboard']); 
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');

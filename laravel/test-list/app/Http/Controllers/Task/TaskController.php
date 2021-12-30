@@ -35,12 +35,12 @@ class TaskController extends Controller
             'name' => 'required|max:255',
         ]);
         if ($validator->fails()) {
-            return redirect('/')
+            return redirect('/tasks')
                 ->withInput()
                 ->withErrors($validator);
         }
         $tasks = $this->taskInterface->addTasks($request);
-        return redirect('/');
+        return redirect('/tasks');
     }
 
      /**
@@ -49,6 +49,6 @@ class TaskController extends Controller
    */
     public function deleteTasks($id){
         $tasks = $this->taskInterface->deleteTasks($id);
-        return redirect('/');
+        return redirect('/tasks');
     }
 }
