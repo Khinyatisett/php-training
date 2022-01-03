@@ -10,11 +10,18 @@ use Illuminate\Http\Request;
 interface AuthDaoInterface
 { 
     /**
-     * Write code on Method
+     * To show login view
      *
      * @return response()
      */
     public function index();
+
+    /**
+     * To show registration view 
+     *
+     * @return response()
+     */
+    public function registration();
     
     /**
     * To submit register create new user

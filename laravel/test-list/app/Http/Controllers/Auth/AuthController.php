@@ -19,7 +19,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Write code on Method
+     * To show login view
      *
      * @return response()
      */
@@ -29,7 +29,7 @@ class AuthController extends Controller
     }  
       
     /**
-     * Write code on Method
+     * To show registration view 
      *
      * @return response()
      */
@@ -39,7 +39,7 @@ class AuthController extends Controller
     }
       
     /**
-     * Write code on Method
+     * To submit login user
      *
      * @return response()
      */
@@ -53,8 +53,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->intended('tasks')->withSuccess('You have Successfully loggedin');
-        }
-        
+        }      
         return redirect("/")->withSuccess('Oppes! You have entered invalid credentials');
     }
       
@@ -70,11 +69,30 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);
-        return redirect("/tasks")->withSuccess('Great! You have Successfully loggedin');
+           
+        $data = $request->all();
+        $check = $this->create($data);
+         
+        return redirect("/")->withSuccess('Great! You have Successfully loggedin');
+    }
+
+    /**
+     * To store data from user registration
+     *
+     * @return response()
+     */
+    public function create(array $data)
+    {
+      return User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password'])
+      ]);
     }
     
+    
     /**
-    * Write code on Method
+    * To show tasks after login
     *
     * @return response()
     */
@@ -87,7 +105,7 @@ class AuthController extends Controller
     }
 
     /**
-    * Write code on Method
+    * To logout user
     *
     * @return response()
     */

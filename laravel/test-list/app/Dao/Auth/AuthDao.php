@@ -21,14 +21,31 @@ class AuthDao implements AuthDaoInterface
     }
 
     /**
+     * To show registration view 
+     *
+     * @return response()
+     */
+    public function registration()
+    {
+      $auth = $this->authInterface->registration();
+    }
+
+    /**
    * To submit register create new user
    * @param Request $request
    * @return View tasks
    */
-    public function postRegistration(Request $request) {
-        $data = $request->all();
+    public function postRegistration(Request $request){
+    $data = $request->all();
         $check = $this->create($data);
+        $check->save();
+
     }
+    /**
+    * To store data from user registration
+    *
+    * @return response()
+    */
     public function create(array $data)
     {
       return User::create([
@@ -37,5 +54,4 @@ class AuthDao implements AuthDaoInterface
         'password' => Hash::make($data['password'])
       ]);
     }
-
 }

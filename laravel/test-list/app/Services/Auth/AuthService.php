@@ -36,6 +36,11 @@ class AuthService implements AuthServiceInterface
     {
         return $this->authDao->index();
     }
+
+    public function registration() 
+    {
+        return $this->authDao->registration();
+    }
     
     /**
    * To submit register create new user
