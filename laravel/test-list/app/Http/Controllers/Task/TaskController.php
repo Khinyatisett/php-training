@@ -15,21 +15,21 @@ class TaskController extends Controller
       $this->taskInterface = $taskServiceInterface;
     }
 
-      /**
-   * To show create task view
-   * 
-   * @return View create tasks
-   */
+    /**
+    * To show create task view
+    * 
+    * @return View create tasks
+    */
     public function displayTasks(){
         $tasks = $this->taskInterface->displayTasks();
         return view('tasks', compact('tasks')); 
     }
 
-      /**
-   * To submit task create tasks 
-   * @param Request $request
-   * @return View tasks
-   */
+    /**
+    * To submit task create tasks 
+    * @param Request $request
+    * @return View tasks
+    */
     public function addTasks(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
@@ -43,10 +43,10 @@ class TaskController extends Controller
         return redirect('/tasks');
     }
 
-     /**
-   * To delete post by id
-   * @return View task
-   */
+    /**
+    * To delete post by id
+    * @return View task
+    */
     public function deleteTasks($id){
         $tasks = $this->taskInterface->deleteTasks($id);
         return redirect('/tasks');

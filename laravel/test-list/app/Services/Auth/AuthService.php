@@ -13,31 +13,36 @@ use Illuminate\Support\Facades\Storage;
  */
 class AuthService implements AuthServiceInterface
 {
-  /**
-   * task dao
+    /**
+    * task dao
+    */
+    private $authDao;
+    /**
+    * Class Constructor
+    * @param TaskDaoInterface
+    * @return
+    */
+    public function __construct(AuthDaoInterface $authDao)
+    {
+        $this->authDao = $authDao;
+    }
+ 
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function index()
+    {
+        return $this->authDao->index();
+    }
+    
+    /**
+   * To submit register create new user
+   * @param Request $request
+   * @return View tasks
    */
-  private $authDao;
-  /**
-   * Class Constructor
-   * @param TaskDaoInterface
-   * @return
-   */
-  public function __construct(AuthDaoInterface $authDao)
-  {
-    $this->authDao = $authDao;
-  }
-  /**
-   * Display login
-   */
-  public function index()
-  {
-    return $this->authDao->index();
-  }
-   /**
-   * Register user
-   */
-  public function postRegistration(Request $request) {
-    return $this->authDao->postRegistration($request);
-  }
-
+    public function postRegistration(Request $request) {
+        return $this->authDao->postRegistration($request);
+    }
 }

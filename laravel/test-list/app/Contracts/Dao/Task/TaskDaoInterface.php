@@ -9,12 +9,23 @@ use Illuminate\Http\Request;
  */
 interface TaskDaoInterface
 {   
-    /**function for display all task  */
+    /**
+    * To show create task view
+    * 
+    * @return View create tasks
+    */
     public function displayTasks();
 
-    /** function for adding new task*/
+    /**
+    * To submit task create tasks 
+    * @param Request $request
+    * @return View tasks
+    */
     public function addTasks(Request $request);
 
-    /** function for delete existing task */
+    /**
+    * To delete post by id
+    * @return View task
+    */
     public function deleteTasks($id);
 }

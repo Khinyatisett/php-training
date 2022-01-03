@@ -16,35 +16,42 @@ class TaskService implements TaskServiceInterface
   /**
    * task dao
    */
-  private $taskDao;
-  /**
-   * Class Constructor
-   * @param TaskDaoInterface
-   * @return
-   */
-  public function __construct(TaskDaoInterface $taskDao)
-  {
-    $this->taskDao = $taskDao;
-  }
-  /**
-   * Display all tasks
-   */
-  public function displayTasks()
-  {
-    return $this->taskDao->displayTasks();
-  }
+    private $taskDao;
+    /**
+     * Class Constructor
+     * @param TaskDaoInterface
+     * @return
+     */
+     public function __construct(TaskDaoInterface $taskDao)
+        {
+             $this->taskDao = $taskDao;
+        }
+    /**
+    * To show create task view
+    * 
+    * @return View create tasks
+    */
+    public function displayTasks()
+    {
+        return $this->taskDao->displayTasks();
+    }
 
-  /**
-   * Add a new task
-   */
-  public function addTasks(Request $request){
-    return $this->taskDao->addTasks($request);
-  }
-  /**
-   * Delete task
-   */
-  public function deleteTasks($id)
-  {
+    /**
+    * To submit task create tasks 
+    * @param Request $request
+    * @return View tasks
+    */
+    public function addTasks(Request $request)
+    {
+        return $this->taskDao->addTasks($request);
+    }
+ 
+    /**
+    * To delete post by id
+    * @return View task
+    */
+    public function deleteTasks($id)
+    {
       return $this->taskDao->deleteTasks($id);
-  }
+    }
 }

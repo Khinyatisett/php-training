@@ -11,7 +11,12 @@ interface AuthServiceInterface
 {
     /**function for display login */
    public function index();
-    /**function for register new user */
+    
+   /**
+   * To submit register create new user
+   * @param Request $request
+   * @return View tasks
+   */
    public function postRegistration(Request $request);
 
 }

@@ -27,16 +27,24 @@ use App\Http\Controllers\Auth\AuthController;
 /**
  * Add A New Task
  */
-Route::post('/task', 'App\Http\Controllers\Task\TaskController@addTasks');
+//Route::post('/task', 'App\Http\Controllers\Task\TaskController@addTasks');
 
 /**
  * Delete An Existing Task
  */
-Route::delete('/task/{id}', 'App\Http\Controllers\Task\TaskController@deleteTasks');
+//Route::delete('/task/{id}', 'App\Http\Controllers\Task\TaskController@deleteTasks');
 
 /**for login */
 
-Route::get('/tasks','App\Http\Controllers\Task\TaskController@displayTasks')->middleware('auth');
+
+Route::group(['middleware'=>['auth']],function(){
+    Route::get('/tasks', 'App\Http\Controllers\Task\TaskController@displayTasks' );
+    Route::post('/task', 'App\Http\Controllers\Task\TaskController@addTasks');
+    Route::delete('/task/{id}', 'App\Http\Controllers\Task\TaskController@deleteTasks');
+});
+
+
+//Route::get('/tasks','App\Http\Controllers\Task\TaskController@displayTasks')->middleware('auth');
 
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 

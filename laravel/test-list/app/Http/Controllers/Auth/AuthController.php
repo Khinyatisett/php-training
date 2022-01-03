@@ -52,18 +52,17 @@ class AuthController extends Controller
    
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('tasks')
-                        ->withSuccess('You have Successfully loggedin');
+            return redirect()->intended('tasks')->withSuccess('You have Successfully loggedin');
         }
         
-        return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
+        return redirect("/")->withSuccess('Oppes! You have entered invalid credentials');
     }
       
     /**
-   * To submit register create new user
-   * @param Request $request
-   * @return View tasks
-   */
+    * To submit register create new user
+    * @param Request $request
+    * @return View tasks
+    */
     public function postRegistration(Request $request)
     {  
         $request->validate([
@@ -75,27 +74,26 @@ class AuthController extends Controller
     }
     
     /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+    * Write code on Method
+    *
+    * @return response()
+    */
     public function dashboard()
     {
         if(Auth::check()){
             return view('/tasks');
         }
-
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect("/")->withSuccess('Opps! You do not have access');
     }
 
     /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+    * Write code on Method
+    *
+    * @return response()
+    */
     public function logout() {
         Session::flush();
         Auth::logout();
-        return Redirect('login');
+        return Redirect('/');
     }
 }

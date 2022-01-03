@@ -15,27 +15,32 @@ use Illuminate\Support\Facades\Storage;
 class TaskDao implements TaskDaoInterface
 {
     /**
-    * Display All Tasks
+    * To show create task view
+    * 
+    * @return View create tasks
     */
-  public function displayTasks()
-  {
-    $tasks = Task::orderBy('created_at', 'asc')->get();
-    return $tasks;
-  }
+    public function displayTasks()
+    {
+        $tasks = Task::orderBy('created_at', 'asc')->get();
+        return $tasks;
+    }
 
-  /**
-    * Add A New Task
+    /**
+    * To submit task create tasks 
+    * @param Request $request
+    * @return View tasks
     */
-  public function addTasks(Request $request){
-    $tasks = new Task;
-    $tasks->name = $request->name;
-    $tasks->save();
-  }
+    public function addTasks(Request $request){
+        $tasks = new Task;
+        $tasks->name = $request->name;
+        $tasks->save();
+    }
 
-  /**
-    * Delete A New Task
+    /**
+    * To delete post by id
+    * @return View task
     */
-  public function deleteTasks($id){
-    Task::findOrFail($id)->delete();
-  }
+    public function deleteTasks($id){
+        Task::findOrFail($id)->delete();
+    }
 }

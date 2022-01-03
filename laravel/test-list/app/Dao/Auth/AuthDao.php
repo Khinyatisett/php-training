@@ -20,7 +20,11 @@ class AuthDao implements AuthDaoInterface
         $auth = $this->authInterface->index();
     }
 
-    /**function for creating new user */
+    /**
+   * To submit register create new user
+   * @param Request $request
+   * @return View tasks
+   */
     public function postRegistration(Request $request) {
         $data = $request->all();
         $check = $this->create($data);
